@@ -1,0 +1,401 @@
+﻿<Window x:Class="data_processing_software.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="" Height="600" Width="1300" WindowStartupLocation="CenterScreen" Icon="Images/数据.png">
+    <!--定义按键属性-->
+    <Window.Resources>
+        <Style x:Key="defaultRadioStyle" TargetType="RadioButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#88949A"/>
+            <Setter Property="Template">
+                <!--重写控件模板-->
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid>
+                            <Border x:Name="Border" Margin="20 0 20 0"/>
+                            <!--设置一个border并设置其到边界的左右距离为20-->
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Setter Property="Foreground" Value="#8CEDCB"/>
+                                <Setter Property="BorderBrush" Value="#8CEDCB" TargetName="Border"/>
+                                <!--设定点击后变色和颜色并指定到border上-->
+                                <Setter Property="BorderThickness" TargetName="Border" Value="0 0 0 4"/>
+                                <!--指定边界的厚度和位置并指定到border上-->
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="False" >
+                                <Setter Property="BorderThickness" TargetName="Border" Value="0"/>
+                                <!--不点击情况下不显示任何东西-->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--设置主按键点击变色风格-->
+
+        <Style x:Key="defaultRadioStyle3" TargetType="RadioButton">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="#88949A"/>
+            <Setter Property="Template">
+                <!--重写控件模板-->
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid>
+                            <Border x:Name="Border" Margin="0 20 0 20"/>
+                            <!--设置一个border并设置其到边界的上下距离为20-->
+                            <ContentPresenter x:Name="contentPresenter" Grid.Column="1" Focusable="False" 
+                                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+                                              Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" 
+                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" 
+                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                        </Grid>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True" >
+                                <Setter Property="Foreground" Value="#8CEDCB"/>
+                                <Setter Property="BorderBrush" Value="#8CEDCB" TargetName="Border"/>
+                                <!--设定点击后变色和颜色并指定到border上-->
+                                <Setter Property="BorderThickness" TargetName="Border" Value="0 0 4 0"/>
+                                <!--指定边界的厚度和位置靠右并指定到border上-->
+                            </Trigger>
+
+                            <Trigger Property="IsChecked" Value="False" >
+                                <Setter Property="BorderThickness" TargetName="Border" Value="0"/>
+                                <!--不点击情况下不显示任何东西-->
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--设置右边主按键点击变色风格-->
+
+        <Style TargetType="RadioButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+
+                        <Border x:Name="back" Opacity="0.8" CornerRadius="30">
+                            <!--背景色-->
+                            <Border.BitmapEffect>
+                                <OuterGlowBitmapEffect Opacity="0.7" GlowSize="0" GlowColor="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Button.Background).(SolidColorBrush.Color)}" />
+                            </Border.BitmapEffect>
+                            <Border.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="0,1.5">
+                                    <GradientBrush.GradientStops>
+                                        <GradientStopCollection>
+                                            <GradientStop Color="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Button.Background).(SolidColorBrush.Color)}" Offset="0"/>
+                                            <GradientStop Color="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Button.Background).(SolidColorBrush.Color)}" Offset="0.4"/>
+                                            <GradientStop Color="#FFF" Offset="1"/>
+                                        </GradientStopCollection>
+                                    </GradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </Border.Background>
+
+
+                            <Border x:Name="fore" BorderThickness="3" CornerRadius="10" BorderBrush="#5555" Height="39" Margin="0,0,0.2,0" VerticalAlignment="Top">
+                                <!--前景色及边框-->
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="1,1" EndPoint="1,1">
+                                        <GradientBrush.GradientStops>
+                                            <GradientStopCollection>
+                                                <GradientStop Color="#6FFF" Offset="0.5"/>
+                                                <GradientStop Color="#1111" Offset="0.51"/>
+                                            </GradientStopCollection>
+                                        </GradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <ContentPresenter x:Name="content" HorizontalAlignment="Center" VerticalAlignment="Center" Content="{TemplateBinding  Content}">
+                                    <ContentPresenter.BitmapEffect>
+                                        <DropShadowBitmapEffect Color="#000" Direction="-90" ShadowDepth="2" Softness="0.1" Opacity="0.3" />
+                                    </ContentPresenter.BitmapEffect>
+                                </ContentPresenter>
+                            </Border>
+
+
+                        </Border>
+
+
+
+                        <ControlTemplate.Triggers>
+
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <!--鼠标移入移出-->
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation To="6" Duration="0:0:0.2" Storyboard.TargetName="back" Storyboard.TargetProperty="(Border.BitmapEffect).(OuterGlowBitmapEffect.GlowSize)" />
+                                            <ColorAnimation To="#AFFF" BeginTime="0:0:0.2" Duration="0:0:0.2" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" />
+                                            <ColorAnimation To="#3FFF" BeginTime="0:0:0.2" Duration="0:0:0.2" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.2" Storyboard.TargetName="back" Storyboard.TargetProperty="(Border.BitmapEffect).(OuterGlowBitmapEffect.GlowSize)" />
+                                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" />
+                                            <ColorAnimation Duration="0:0:0.2" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+
+                            <Trigger Property="IsPressed" Value="True">
+                                <!--按钮按下弹起-->
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation To="3" Duration="0:0:0.1" Storyboard.TargetName="back" Storyboard.TargetProperty="(Border.BitmapEffect).(OuterGlowBitmapEffect.GlowSize)" />
+                                            <ColorAnimation To="#3AAA" Duration="0:0:0.1" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" />
+                                            <ColorAnimation To="#2111" Duration="0:0:0.1" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="back" Storyboard.TargetProperty="(Border.BitmapEffect).(OuterGlowBitmapEffect.GlowSize)" />
+                                            <ColorAnimation Duration="0:0:0.1" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" />
+                                            <ColorAnimation Duration="0:0:0.1" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+
+                            <Trigger Property="IsEnabled" Value="False">
+                                <!--按钮失效-->
+                                <Setter Property="Foreground" Value="#B444"/>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation To="0" Duration="0:0:0.3" Storyboard.TargetName="back" Storyboard.TargetProperty="(Border.BitmapEffect).(OuterGlowBitmapEffect.GlowSize)" />
+                                            <DoubleAnimation To="1" Duration="0:0:0.1" Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.BitmapEffect).(DropShadowBitmapEffect.Opacity)" />
+                                            <DoubleAnimation To="-135" Duration="0:0:0.1" Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.BitmapEffect).(DropShadowBitmapEffect.Direction)" />
+                                            <ColorAnimation To="#FFF" Duration="0:0:0.3" Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.BitmapEffect).(DropShadowBitmapEffect.Color)" />
+                                            <ColorAnimation To="#D555" Duration="0:0:0.3" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" />
+                                            <ColorAnimation To="#CEEE" Duration="0:0:0.3" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" />
+                                            <ColorAnimation To="#CDDD" Duration="0:0:0.3" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="back" Storyboard.TargetProperty="(Border.BitmapEffect).(OuterGlowBitmapEffect.GlowSize)" />
+                                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.BitmapEffect).(DropShadowBitmapEffect.Opacity)" />
+                                            <DoubleAnimation Duration="0:0:0.1" Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.BitmapEffect).(DropShadowBitmapEffect.Direction)" />
+                                            <ColorAnimation Duration="0:0:0.1" Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.BitmapEffect).(DropShadowBitmapEffect.Color)" />
+                                            <ColorAnimation Duration="0:0:0.1" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.BorderBrush).(SolidColorBrush.Color)" />
+                                            <ColorAnimation Duration="0:0:0.1" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[0].(GradientStop.Color)" />
+                                            <ColorAnimation Duration="0:0:0.1" Storyboard.TargetName="fore" Storyboard.TargetProperty="(Border.Background).(LinearGradientBrush.GradientStops)[1].(GradientStop.Color)" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <!--设置小按钮按键点击风格-->
+    </Window.Resources>
+
+
+
+
+    <Grid>
+        <!--设定总体行列宽度和高度-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--标题和工具栏-->
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="4*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center"  Margin="15 0 0 0">
+                <Image Source="Images/Image3.jpg" Width="80" Height="80" />
+                <TextBlock Text="数据处理" FontWeight="Bold" FontSize="18" VerticalAlignment="Center" Foreground="Black" Margin="10 0 0 0"/>
+            </StackPanel>
+
+
+            <UniformGrid Columns="4" Grid.Column="1">
+                <!--uniform实现均分4列-->
+                <RadioButton Style="{StaticResource defaultRadioStyle}"  Click="button5_Click" >
+                    <!--注意名称大小写一定要跟定义的一致-->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xe635;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <!--设置小图标，小图标text要添加分号，此处引用fonts文件-->
+                        <TextBlock Text="打开文件" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource defaultRadioStyle}" Click="button4_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xe682;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <TextBlock Text="显示数据" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource defaultRadioStyle}" Click="button9_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xe612;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <TextBlock Text="保存数据" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource defaultRadioStyle}" Click="button10_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="&#xe612;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <TextBlock Text="保存图像" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center" Margin="10 0 0 0"/>
+                    </StackPanel>
+                </RadioButton>
+
+            </UniformGrid>
+
+        </Grid>
+
+
+        <!--头像区域-->
+        <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <!--设置位置-->
+            <Image Source="Images/Image1.jpg" Width="50" Height="50" Stretch="Fill">
+                <Image.Clip>
+                    <EllipseGeometry RadiusX="25" RadiusY="25" Center="25 25"/>
+                    <!--将图片变为圆形-->
+                </Image.Clip>
+            </Image>
+
+            <StackPanel HorizontalAlignment="Center">
+                <!--设置文本位置-->
+                <TextBlock Text="广西大学" HorizontalAlignment="Center" FontSize="15" FontWeight="Bold"/>
+                <TextBlock Text="机械工程学院" FontSize="13" Foreground="#405050"/>
+            </StackPanel>
+        </StackPanel>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <!--分割区域-->
+
+
+            <UniformGrid Rows="4" Grid.Row="4">
+                
+
+                <RadioButton Style="{StaticResource defaultRadioStyle3}">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xe611;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <TextBlock Text="设置" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource defaultRadioStyle3}" Click="button8_Click" >
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xe62e;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <TextBlock Text="反馈" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource defaultRadioStyle3}" Click="button2_Click">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xe623;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <TextBlock Text="关于" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+
+                <RadioButton Style="{StaticResource defaultRadioStyle3}" Click="button3_Click">
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock Text="&#xe60e;" FontFamily="Fonts/#iconfont" FontSize="40" VerticalAlignment="Center"/>
+                        <TextBlock Text="帮助" FontSize="20"  FontWeight="Bold" VerticalAlignment="Center"/>
+                    </StackPanel>
+                </RadioButton>
+
+            </UniformGrid>
+
+
+
+        </Grid>
+
+
+        <!--主体表格-->
+        <Grid Grid.Row="1" Background="#F5F6FA">
+            <Grid.RowDefinitions>
+                <!--整片区域分成两行-->
+                <RowDefinition Height="50" />
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <!--对第一行进行设置-->
+
+                <Image Source="Images/Image2.jpg" Width="50" Height="50" Stretch="Fill" Margin="30,0,0,0" HorizontalAlignment="Left"/>
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <RadioButton  Content="重复性" FontSize="23" FontWeight="Light" Foreground="#586A73" Margin="50,10,50,0"  Height="39" Width="76" Click="button11_Click"></RadioButton>
+                    <RadioButton  Content="迟滞" FontSize="25" FontWeight="Light" Foreground="#586A73" Margin="50,10,50,0"  Height="39" Width="76" Click="button6_Click"></RadioButton>
+                    <RadioButton  Content="拟合" FontSize="25" FontWeight="Light" Foreground="#586A73" Margin="50,10,50,0"  Height="39" Width="76" Click="button7_Click"></RadioButton>
+                    <RadioButton  Content="图像" FontSize="25" FontWeight="Light" Foreground="#586A73" Margin="50,10,50,0"  Height="39" Width="76" Click="button1_Click"></RadioButton>
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+
+
+                    <ColumnDefinition Width="700*"/>
+                    <ColumnDefinition Width="409*"/>
+
+
+                </Grid.ColumnDefinitions>
+                <!--对第二行设置-->
+
+                <ContentControl x:Name="content1" HorizontalAlignment="Left" Margin="15,0,0,15"  Width="477" Height="401" VerticalAlignment="Bottom"/>
+                <ContentControl x:Name="content2" HorizontalAlignment="Right" Margin="0,0,14.8,279"  Width="584" Height="137" VerticalAlignment="Bottom" Grid.ColumnSpan="2"/>
+                <ContentControl x:Name="content3" HorizontalAlignment="Right" Height="264" Margin="0,0,14.8,15" VerticalAlignment="Bottom" Width="584" Grid.ColumnSpan="2" />
+                <ContentControl x:Name="content4" Margin="14,10,15.8,6" Width="1079" Height="420" Grid.ColumnSpan="2" />
+            </Grid>
+
+
+
+
+        </Grid>
+
+
+    </Grid>
+
+
+
+
+
+</Window>

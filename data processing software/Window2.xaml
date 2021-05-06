@@ -1,0 +1,14 @@
+﻿<Window x:Class="data_processing_software.Window2"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:data_processing_software"
+        mc:Ignorable="d"
+        Title="关于" Height="180" Width="400" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Cursor="" Icon="Images/关于.png" >
+    <Grid>
+        <Image Source="Images/数据.png" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 0" Width="100"/>
+        <Label Content="电容式扭矩传感器数据处理" FontSize="15" FontWeight="Bold" Foreground="Gray" HorizontalAlignment="Left" Height="32" Margin="159,38,0,0" VerticalAlignment="Top" Width="190"/>
+        <Label Content="1.0.0 Beta" FontWeight="Bold" FontSize="15" Foreground="Gray" HorizontalAlignment="Left" Height="28" Margin="159,75,0,0" VerticalAlignment="Top" Width="84" RenderTransformOrigin="0.546,0.107"/>
+    </Grid>
+</Window>

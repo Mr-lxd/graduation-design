@@ -1,0 +1,21 @@
+﻿<Page x:Class="data_processing_software.Page6"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:data_processing_software"
+      mc:Ignorable="d" 
+      d:DesignHeight="401" d:DesignWidth="477"
+      Title="Page6">
+
+    <Grid>
+        <RichTextBox x:Name="RichTextBox6" Height="401" VerticalAlignment="Top" FontSize="20" Foreground="SkyBlue" FontWeight="Medium" HorizontalAlignment="Left" Width="477" Margin="0,0,-0.2,-0.2" BorderBrush="SkyBlue">
+
+            <FlowDocument>
+                <Paragraph>
+                    <Run  />
+                </Paragraph>
+            </FlowDocument>
+        </RichTextBox>
+    </Grid>
+</Page>
